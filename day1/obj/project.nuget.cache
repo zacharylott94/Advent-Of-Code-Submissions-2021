@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "IASQRDy5/GngCSw/ds8p9LSzpgUw8myU7fl4h6JAPjHYXGYARiUw4G/6EjDjkE7laIXov/EVxBUmAK5GDd/jzg==",
+  "success": true,
+  "projectFilePath": "/home/zach/Programming/Advent-Of-Code-Submissions-2021/day1/day1.fsproj",
+  "expectedPackageFiles": [
+    "/home/zach/.nuget/packages/fsharp.core/5.0.0/fsharp.core.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
