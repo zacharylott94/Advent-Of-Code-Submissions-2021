@@ -7,7 +7,7 @@ type Command =
     | Up of int
     | Down of int
 
-type Position = int * int
+type Position = int * int * int
 
 
 let parse (str:string) =
@@ -20,20 +20,20 @@ let parse (str:string) =
         | "forward" -> Forward (int value)
         | _ -> failwith "Invalid command"
 
-let doCommand (h, d) command =
+let doCommand ((h, d, a):Position) (command:Command) : Position =
     match command with
-    | Up x -> (h, d - x)
-    | Down x -> (h, d + x)
-    | Forward x -> (h + x, d)
+    | Up x -> (h, d, a - x)
+    | Down x -> (h, d, a + x)
+    | Forward x -> (h + x, d + (a*x), a)
 
 [<EntryPoint>]
 let main argv =
     let lines = File.ReadAllLines("input")
     lines
     |> Array.map parse
-    |> Array.fold (doCommand) (0,0)
+    |> Array.fold (doCommand) (0,0,0)
     // |> fun (h, d) -> h * d
-    |> fun (h,d) -> printfn "Horizontal:%d * Depth:%d = %d" h d (h*d)
+    |> fun (h,d,a) -> printfn "Horizontal:%d * Depth:%d = %d" h d (h*d)
     
 
     0 // return an integer exit code
