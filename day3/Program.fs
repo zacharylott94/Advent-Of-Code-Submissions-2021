@@ -1,7 +1,6 @@
 // Learn more about F# at http://docs.microsoft.com/dotnet/fsharp
 
 open System.IO
-open System
 open FSharp.Core
 
 type Bit = 
@@ -16,14 +15,21 @@ let parse (str:string) : BinaryNumber =
         | '0' -> Zero
         | _ -> failwith "Not 1 or 0"
             )
-let decideBit (bits:Bit[]): Bit =
-    bits
-    |> Array.fold (fun (ones, zeros) bit -> 
-        match bit with
+let mostCommonBitAt index (nums:BinaryNumber[]): Bit =
+    nums
+    |> Array.fold (fun (ones, zeros) num -> 
+        match num.[index] with
         | One -> (ones + 1, zeros)
         | Zero -> (ones, zeros + 1)
         ) (0,0)
-    |> fun (ones, zeros) -> if (ones > zeros) then One else Zero     
+    |> fun (ones, zeros) -> if (ones >= zeros) then One else Zero     
+
+let flipBit =
+    function
+    | One -> Zero
+    | Zero -> One
+
+let leastCommonBitAt index = mostCommonBitAt index >> flipBit
  
 let parseStringToNumber (str:string) =
     str.ToCharArray()
@@ -32,10 +38,7 @@ let parseStringToNumber (str:string) =
     |> Array.map (fun (i,b) -> ((string >> int) b)<<<i)
     |> Array.sum
 
-let flipBits (bits:Bit[]): Bit[] =
-    Array.map (function
-        | One -> Zero
-        | Zero -> One) bits
+
 let bitsToString bits =
     Array.fold (fun str bit ->
         match bit with
@@ -43,15 +46,26 @@ let bitsToString bits =
         | Zero -> str+"0"
     ) ""  bits  
 
+let binaryToDecimal = bitsToString >> parseStringToNumber
+
+let rec filterAndRepeat (index:int) (criteria:int -> BinaryNumber[] -> Bit) (nums:BinaryNumber[]) =
+    let criteriaBit = criteria index nums
+    nums
+    |> Array.filter (fun x -> x.[index] = criteriaBit)
+    |> function
+        | [|num|] -> num
+        | [||] -> failwith "Empty Array"
+        | x -> filterAndRepeat (index+1) criteria x
+
+let oxygenRating = filterAndRepeat 0 mostCommonBitAt
+let co2ScrubbingRating = filterAndRepeat 0 leastCommonBitAt 
+
 [<EntryPoint>]
 let main argv =
     File.ReadAllLines("input")
     |> Array.map parse
-    |> Array.transpose
-    |> Array.map decideBit
-    |> fun x -> (x, flipBits x)
-    |> fun (x,y) -> Array.map bitsToString [|x;y|]
-    |> Array.map parseStringToNumber
+    |> fun x -> [|oxygenRating x; co2ScrubbingRating x|]
+    |> Array.map (binaryToDecimal)
     |> Array.reduce (*)
     |> printfn "final result: %d"
 
