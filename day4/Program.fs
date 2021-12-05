@@ -4,6 +4,7 @@ open System.IO
 open FSharp.Core
 open Board
 
+
 let splitIntoNumbersAndBoardStrings (str:string) = 
     str.Split("\n\n")
     |> fun x -> (Array.head x, Array.tail x)
@@ -19,6 +20,5 @@ let main argv =
     file
     |> splitIntoNumbersAndBoardStrings
     |> tms (Array.map Board.parseString)
-    // |> ignore
-    |> fun (x,y) -> printfn "boards:\n%d" y.Length
+    |> ignore
     0 // return an integer exit code
