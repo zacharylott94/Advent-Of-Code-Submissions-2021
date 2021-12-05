@@ -15,7 +15,7 @@ let tms = tupleMapSecond
 
 [<EntryPoint>]
 let main argv =
-    let file = File.ReadAllText("truncatedinput")
+    let file = File.ReadAllText("input")
     file
     |> splitIntoNumbersAndBoardStrings
     |> tms (Array.map Board.parseString)
