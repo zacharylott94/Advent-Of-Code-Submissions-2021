@@ -54,3 +54,10 @@ module Board =
     |> Array.map (fun rc -> Array.fold (&&) true rc)
     |> Array.fold (||) false
 
+  let rec getWinningBoard ((nums:int[]), (boards:Board[])) :Board =
+    match (Array.filter (not << isWinner) boards) with
+      | [|winner|] -> winner
+      | [||] -> failwith "what happened?"
+      | _ -> getWinningBoard ((Array.tail nums), boards |>
+              Array.map (markNumber (Array.head nums)))
+    

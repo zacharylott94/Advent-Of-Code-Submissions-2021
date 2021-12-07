@@ -20,5 +20,11 @@ let main argv =
     file
     |> splitIntoNumbersAndBoardStrings
     |> tms (Array.map Board.parseString)
-    |> ignore
+    |> Board.getWinningBoard 
+    |> Board.toNestedArray
+    |> Array.map (Array.map string)
+    |> Array.map (Array.fold (fun x y -> x + " " + y) "")
+    |> Array.fold (fun x y -> x + "\n" + y) ""
+    |> printfn "%s"
+
     0 // return an integer exit code
