@@ -8,6 +8,6 @@ let from whom =
 
 [<EntryPoint>]
 let main argv =
-    let message = from "F#" // Call the function
-    printfn "Hello world %s" message
+    task1.run "task1 result"
+    task2.run "task2 result"
     0 // return an integer exit code

@@ -1,5 +1,4 @@
-﻿namespace task1
+﻿module task1
 
-module Say =
-    let hello name =
-        printfn "Hello %s" name
+let run str =
+        printfn "task1: %s" str
