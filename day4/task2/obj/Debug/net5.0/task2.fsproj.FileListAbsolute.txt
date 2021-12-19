@@ -8,3 +8,7 @@
 /home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task2/obj/Debug/net5.0/task2.dll
 /home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task2/obj/Debug/net5.0/task2.xml
 /home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task2/obj/Debug/net5.0/task2.pdb
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task2/bin/Debug/net5.0/shared.dll
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task2/bin/Debug/net5.0/shared.pdb
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task2/bin/Debug/net5.0/shared.xml
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task2/obj/Debug/net5.0/task2.fsproj.CopyComplete

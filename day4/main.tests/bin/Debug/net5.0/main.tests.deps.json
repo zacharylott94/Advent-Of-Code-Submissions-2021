@@ -13,6 +13,7 @@
           "MSTest.TestFramework": "2.2.3",
           "Microsoft.NET.Test.Sdk": "16.9.4",
           "coverlet.collector": "3.0.2",
+          "shared": "1.0.0",
           "task1": "1.0.0",
           "task2": "1.0.0"
         },
@@ -1128,9 +1129,18 @@
           "System.Xml.ReaderWriter": "4.3.0"
         }
       },
-      "task1/1.0.0": {
+      "shared/1.0.0": {
         "dependencies": {
           "FSharp.Core": "5.0.0"
+        },
+        "runtime": {
+          "shared.dll": {}
+        }
+      },
+      "task1/1.0.0": {
+        "dependencies": {
+          "FSharp.Core": "5.0.0",
+          "shared": "1.0.0"
         },
         "runtime": {
           "task1.dll": {}
@@ -1138,7 +1148,8 @@
       },
       "task2/1.0.0": {
         "dependencies": {
-          "FSharp.Core": "5.0.0"
+          "FSharp.Core": "5.0.0",
+          "shared": "1.0.0"
         },
         "runtime": {
           "task2.dll": {}
@@ -1774,6 +1785,11 @@
       "sha512": "sha512-5zJ0XDxAIg8iy+t4aMnQAu0MqVbqyvfoUVl1yDV61xdo3Vth45oA2FoY4pPkxYAH5f8ixpmTqXeEIya95x0aCQ==",
       "path": "system.xml.xdocument/4.3.0",
       "hashPath": "system.xml.xdocument.4.3.0.nupkg.sha512"
+    },
+    "shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "task1/1.0.0": {
       "type": "project",

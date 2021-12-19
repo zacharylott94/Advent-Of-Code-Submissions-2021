@@ -1711,11 +1711,25 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "task1/1.0.0": {
+      "shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "FSharp.Core": "5.0.0"
+        },
+        "compile": {
+          "bin/placeholder/shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/shared.dll": {}
+        }
+      },
+      "task1/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "FSharp.Core": "5.0.0",
+          "shared": "1.0.0"
         },
         "compile": {
           "bin/placeholder/task1.dll": {}
@@ -1728,7 +1742,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "FSharp.Core": "5.0.0"
+          "FSharp.Core": "5.0.0",
+          "shared": "1.0.0"
         },
         "compile": {
           "bin/placeholder/task2.dll": {}
@@ -6207,6 +6222,11 @@
         "system.xml.xdocument.nuspec"
       ]
     },
+    "shared/1.0.0": {
+      "type": "project",
+      "path": "../shared/shared.fsproj",
+      "msbuildProject": "../shared/shared.fsproj"
+    },
     "task1/1.0.0": {
       "type": "project",
       "path": "../task1/task1.fsproj",
@@ -6225,6 +6245,7 @@
       "MSTest.TestFramework >= 2.2.3",
       "Microsoft.NET.Test.Sdk >= 16.9.4",
       "coverlet.collector >= 3.0.2",
+      "shared >= 1.0.0",
       "task1 >= 1.0.0",
       "task2 >= 1.0.0"
     ]
@@ -6254,6 +6275,9 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
+            "/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/shared/shared.fsproj": {
+              "projectPath": "/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/shared/shared.fsproj"
+            },
             "/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/task1.fsproj": {
               "projectPath": "/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/task1.fsproj"
             },

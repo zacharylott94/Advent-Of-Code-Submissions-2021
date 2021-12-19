@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "G3BAm5LEVxB401eyFXwMfjshKbUqyuqcMPlYEzOtkbA4LEqFOOcjt8mSR12RIFV2H1ZPIWF/3gNckVrV/7CK+g==",
+  "dgSpecHash": "5UBrm6tpOuVrc4AXVjfVUnJ0Gypu9UOG+YRsE5H4fWUUWnPSrH7Ipks7XvKq8Dm6gZaSTniyp0a14PPI75J9PA==",
   "success": true,
   "projectFilePath": "/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/task1.fsproj",
   "expectedPackageFiles": [

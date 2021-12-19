@@ -51,6 +51,19 @@
             "locale": "zh-Hant"
           }
         }
+      },
+      "shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "FSharp.Core": "5.0.0"
+        },
+        "compile": {
+          "bin/placeholder/shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/shared.dll": {}
+        }
       }
     }
   },
@@ -81,11 +94,17 @@
         "lib/netstandard2.0/zh-Hans/FSharp.Core.resources.dll",
         "lib/netstandard2.0/zh-Hant/FSharp.Core.resources.dll"
       ]
+    },
+    "shared/1.0.0": {
+      "type": "project",
+      "path": "../shared/shared.fsproj",
+      "msbuildProject": "../shared/shared.fsproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "FSharp.Core >= 5.0.0"
+      "FSharp.Core >= 5.0.0",
+      "shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -112,7 +131,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/shared/shared.fsproj": {
+              "projectPath": "/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/shared/shared.fsproj"
+            }
+          }
         }
       }
     },
