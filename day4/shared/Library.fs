@@ -6,6 +6,12 @@ type Spot =
 
 type Board = Spot[][]
 
+module Row =
+    let mark (num: int) (row: Spot[]) :Spot[] =
+        Array.map (function 
+                    | Unmarked x when x = num -> Marked x
+                    | x -> x) row
+
 module Board =
     let toString (board:Board) = //currently only used to equate boards
         Array.concat board
@@ -24,6 +30,19 @@ module Board =
                             |>  Array.map int 
                             |> Array.map (fun num -> Unmarked num)
                         )
+    let mark (num: int) (board: Board) : Board =
+        board |> Array.map (fun row -> (Row.mark num row))
+    
+    let isWinner (board: Board) : bool =
+        Array.concat [|board; Array.transpose board|] //transform board into a list of Rows and Columns
+        |> Array.map (fun row -> 
+            row
+            |> Array.map (function 
+                            | Marked x -> true
+                            | Unmarked x -> false) //transform marked or unmarked spots to true or false
+            |> Array.reduce (&&) //true if every spot in row marked
+        )
+        |> Array.reduce (||) //true if at least one row or column is complete
 
 let (<.) (map: 'a -> 'c) ((first, second): 'a * 'b) = (map first, second)
 let (.>) (map: 'b -> 'c) ((first, second): 'a * 'b) = (first, map second)

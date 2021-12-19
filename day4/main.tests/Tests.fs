@@ -35,7 +35,7 @@ type SharedTests () =
 
         let parsed = Shared.ParseRaw rawInput
 
-        //check to see if our first tuple value is an array of int and check to see if the first element of that array is 87
+        //check to see if our first tuple value is the expected array of int
         let compareNums = 
             Array.zip expectedNums (fst parsed) 
             |> Array.map (fun (x,y) -> x = y)
@@ -44,7 +44,67 @@ type SharedTests () =
 
         let parsedFirst = (snd parsed).[0]
         let parsedSecond = (snd parsed).[1]
-        printfn "parsed first board: %s" (Board.toString parsedFirst)
-        printfn "expected first board: %s" (Board.toString firstBoard)
+        //check to see if the boards were parsed correctly
         Assert.IsTrue(Board.Equals parsedFirst firstBoard)
         Assert.IsTrue(Board.Equals parsedSecond secondBoard)
+
+    [<TestMethod>]
+    member this.markBoard () =
+        let unmarkedBoard = 
+            [|
+                [|3; 55; 15; 54; 81|]
+                [|56; 77; 20; 99; 25|]
+                [|90; 57; 67; 0; 97|]
+                [|28; 45; 69; 84; 14|]
+                [|91; 94; 39; 36; 85|]
+            |] 
+            |> Array.map (fun row -> Array.map (fun num -> Unmarked num) row)
+        
+        let expectedBoard =
+            [|
+                [|Unmarked 3; Marked 55; Unmarked 15; Unmarked 54; Unmarked 81|]
+                [|Unmarked 56; Unmarked 77; Unmarked 20; Unmarked 99; Unmarked 25|]
+                [|Unmarked 90; Unmarked 57; Marked 67; Unmarked 0; Unmarked 97|]
+                [|Unmarked 28; Unmarked 45; Unmarked 69; Unmarked 84; Unmarked 14|]
+                [|Unmarked 91; Unmarked 94; Unmarked 39; Marked 36; Unmarked 85|]
+            |] 
+        
+        let test = 
+            unmarkedBoard
+            |> Board.mark 55
+            |> Board.mark 67
+            |> Board.mark 36
+            |> Board.mark 1 //this number doesn't exist on the board and should not change the board
+            |> Board.Equals expectedBoard
+        Assert.IsTrue(test)
+    
+    [<TestMethod>]
+    member this.checkBoardForBingo () =
+        let winningRowBoard =
+            [|
+                [|Marked 3; Marked 55; Marked 15; Marked 54; Marked 81|]
+                [|Unmarked 56; Unmarked 77; Unmarked 20; Unmarked 99; Unmarked 25|]
+                [|Unmarked 90; Unmarked 57; Marked 67; Unmarked 0; Unmarked 97|]
+                [|Unmarked 28; Unmarked 45; Unmarked 69; Unmarked 84; Unmarked 14|]
+                [|Unmarked 91; Unmarked 94; Unmarked 39; Marked 36; Unmarked 85|]
+            |]          
+        let winningColumnBoard =
+            [|
+                [|Unmarked 3; Marked 55; Unmarked 15; Unmarked 54; Unmarked 81|]
+                [|Unmarked 56; Marked 77; Unmarked 20; Unmarked 99; Unmarked 25|]
+                [|Unmarked 90; Marked 57; Marked 67; Unmarked 0; Unmarked 97|]
+                [|Unmarked 28; Marked 45; Unmarked 69; Unmarked 84; Unmarked 14|]
+                [|Unmarked 91; Marked 94; Unmarked 39; Marked 36; Unmarked 85|]
+            |] 
+        let nonWinningBoard =
+            [|
+                [|Marked 3; Unmarked 55; Unmarked 15; Unmarked 54; Unmarked 81|]
+                [|Unmarked 56; Marked 77; Unmarked 20; Marked 99; Marked 25|]
+                [|Marked 90; Marked 57; Marked 67; Unmarked 0; Marked 97|]
+                [|Marked 28; Marked 45; Marked 69; Marked 84; Unmarked 14|]
+                [|Unmarked 91; Unmarked 94; Unmarked 39; Unmarked 36; Marked 85|]
+            |] 
+        
+        Assert.IsTrue(Board.isWinner winningRowBoard) //complete Row can win
+        Assert.IsTrue(Board.isWinner winningColumnBoard) //complete Column can win
+        Assert.IsFalse(Board.isWinner nonWinningBoard) //Incomplete board is not a winner
