@@ -31,3 +31,6 @@
 /home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/main/obj/Debug/net5.0/main.dll
 /home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/main/obj/Debug/net5.0/main.pdb
 /home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/main/obj/Debug/net5.0/main.genruntimeconfig.cache
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/main/bin/Debug/net5.0/shared.dll
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/main/bin/Debug/net5.0/shared.pdb
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/main/bin/Debug/net5.0/shared.xml

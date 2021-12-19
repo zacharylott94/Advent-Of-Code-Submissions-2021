@@ -24,7 +24,7 @@ module Board =
         toString a = toString b
 
     let fromString (str:string) : Board =
-        str.Split('\n') //to row Strings
+        str.Split('\n',System.StringSplitOptions.RemoveEmptyEntries) //to row Strings
         |> Array.map (fun rowString -> 
                         rowString.Split(' ', System.StringSplitOptions.RemoveEmptyEntries) 
                             |>  Array.map int 
@@ -43,6 +43,14 @@ module Board =
             |> Array.reduce (&&) //true if every spot in row marked
         )
         |> Array.reduce (||) //true if at least one row or column is complete
+    let score (lastCalled: int) (winningBoard: Board) : int =
+        winningBoard
+        |> Array.concat
+        |> Array.map (function
+                        | Marked _ -> 0
+                        | Unmarked x -> x)
+        |> Array.sum
+        |> (*) lastCalled
 
 let (<.) (map: 'a -> 'c) ((first, second): 'a * 'b) = (map first, second)
 let (.>) (map: 'b -> 'c) ((first, second): 'a * 'b) = (first, map second)

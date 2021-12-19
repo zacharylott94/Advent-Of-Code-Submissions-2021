@@ -9,6 +9,7 @@
       "main/1.0.0": {
         "dependencies": {
           "FSharp.Core": "5.0.0",
+          "shared": "1.0.0",
           "task1": "1.0.0",
           "task2": "1.0.0"
         },
@@ -65,9 +66,18 @@
           }
         }
       },
-      "task1/1.0.0": {
+      "shared/1.0.0": {
         "dependencies": {
           "FSharp.Core": "5.0.0"
+        },
+        "runtime": {
+          "shared.dll": {}
+        }
+      },
+      "task1/1.0.0": {
+        "dependencies": {
+          "FSharp.Core": "5.0.0",
+          "shared": "1.0.0"
         },
         "runtime": {
           "task1.dll": {}
@@ -75,7 +85,8 @@
       },
       "task2/1.0.0": {
         "dependencies": {
-          "FSharp.Core": "5.0.0"
+          "FSharp.Core": "5.0.0",
+          "shared": "1.0.0"
         },
         "runtime": {
           "task2.dll": {}
@@ -95,6 +106,11 @@
       "sha512": "sha512-iHoYXA0VaSQUONGENB1aVafjDDZDZpwu39MtaRCTrmwFW/cTcK0b2yKNVYneFHJMc3ChtsSoM9lNtJ1dYXkHfA==",
       "path": "fsharp.core/5.0.0",
       "hashPath": "fsharp.core.5.0.0.nupkg.sha512"
+    },
+    "shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "task1/1.0.0": {
       "type": "project",

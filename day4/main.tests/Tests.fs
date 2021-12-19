@@ -48,6 +48,10 @@ type SharedTests () =
         Assert.IsTrue(Board.Equals parsedFirst firstBoard)
         Assert.IsTrue(Board.Equals parsedSecond secondBoard)
 
+        //check number of rows to see if there are only 5 rows
+        Assert.AreEqual(parsedFirst.Length, 5)
+        Assert.AreEqual(parsedSecond.Length, 5)
+
     [<TestMethod>]
     member this.markBoard () =
         let unmarkedBoard = 
@@ -108,3 +112,49 @@ type SharedTests () =
         Assert.IsTrue(Board.isWinner winningRowBoard) //complete Row can win
         Assert.IsTrue(Board.isWinner winningColumnBoard) //complete Column can win
         Assert.IsFalse(Board.isWinner nonWinningBoard) //Incomplete board is not a winner
+
+    [<TestMethod>]
+    member this.ScoreBoard () =
+        let winningRowBoard =
+            [|
+                [|Marked 3; Marked 55; Marked 15; Marked 54; Marked 81|]
+                [|Unmarked 56; Unmarked 77; Unmarked 20; Unmarked 99; Unmarked 25|]
+                [|Unmarked 90; Unmarked 57; Marked 67; Unmarked 0; Unmarked 97|]
+                [|Unmarked 28; Unmarked 45; Unmarked 69; Unmarked 84; Unmarked 14|]
+                [|Unmarked 91; Unmarked 94; Unmarked 39; Marked 36; Unmarked 85|]
+            |]
+        let lastCalled = 36
+        let sumOfUnmarked = 1070
+        let expectedScore = sumOfUnmarked * lastCalled
+
+        Assert.AreEqual(Board.score lastCalled winningRowBoard, expectedScore)
+
+[<TestClass>]
+type Task1Tests () =
+    
+    [<TestMethod>]
+    member this.task1 () =
+        let inputs: (int[] * Board[]) = ([|52; 60; 3; 55; 71; 6; 4; 56; 11; 13; 14|],
+                                        [|
+                                            [|
+                                                [|3; 55; 15; 54; 81|]
+                                                [|56; 77; 20; 99; 25|]
+                                                [|90; 57; 67; 0; 97|]
+                                                [|28; 45; 69; 84; 14|]
+                                                [|91; 94; 39; 36; 85|]
+                                            |] 
+                                            |> Array.map (fun row -> Array.map (fun num -> Unmarked num) row)
+                                        
+                                            [|
+                                                [|52; 60; 30; 7; 36|]
+                                                [|71; 97; 77; 19; 46|]
+                                                [|6; 3; 75; 82; 24|]
+                                                [|4; 57; 2; 11; 91|]
+                                                [|56; 84; 23; 43; 48|]
+                                            |] 
+                                            |> Array.map (fun row -> Array.map (fun num -> Unmarked num) row)
+                                        |])
+        
+        let expectedOutput = 56 * 852
+
+        Assert.AreEqual(task1.run inputs, expectedOutput)
