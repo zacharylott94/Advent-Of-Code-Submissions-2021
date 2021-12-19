@@ -1,0 +1,10 @@
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/bin/Debug/net5.0/task1.deps.json
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/bin/Debug/net5.0/task1.dll
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/bin/Debug/net5.0/task1.pdb
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/bin/Debug/net5.0/task1.xml
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/obj/Debug/net5.0/task1.fsproj.AssemblyReference.cache
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/obj/Debug/net5.0/task1.AssemblyInfoInputs.cache
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/obj/Debug/net5.0/task1.AssemblyInfo.fs
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/obj/Debug/net5.0/task1.dll
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/obj/Debug/net5.0/task1.xml
+/home/zach/Programming/Advent-Of-Code-Submissions-2021/day4/task1/obj/Debug/net5.0/task1.pdb
