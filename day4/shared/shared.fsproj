@@ -10,8 +10,4 @@
     <Compile Include="Library.fs" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\shared\shared.fsproj" />
-  </ItemGroup>
-
 </Project>

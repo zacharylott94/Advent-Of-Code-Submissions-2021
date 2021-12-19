@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\task1\task1.fsproj" />
     <ProjectReference Include="..\task2\task2.fsproj" />
+    <ProjectReference Include="..\shared\shared.fsproj" />
   </ItemGroup>
 
 </Project>
