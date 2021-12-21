@@ -12,5 +12,5 @@ let main argv =
     let rawInput = File.ReadAllText("input")
     let input = ParseRaw rawInput
     printfn "task1: %d" (task1.run input)
-    task2.run "task2 result"
+    printfn "task2: %d" (task2.run input)
     0 // return an integer exit code
