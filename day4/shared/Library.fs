@@ -13,16 +13,6 @@ module Row =
                     | x -> x) row
 
 module Board =
-    let toString (board:Board) = //currently only used to equate boards
-        Array.concat board
-        |> Array.map (function 
-                        | Marked x -> string x + "*"
-                        | Unmarked x -> string x
-                        )
-        |> String.concat " "
-    let Equals (a:Board) (b:Board) =
-        toString a = toString b
-
     let fromString (str:string) : Board =
         str.Split('\n',System.StringSplitOptions.RemoveEmptyEntries) //to row Strings
         |> Array.map (fun rowString -> 
@@ -35,14 +25,14 @@ module Board =
     
     let isWinner (board: Board) : bool =
         Array.concat [|board; Array.transpose board|] //transform board into a list of Rows and Columns
-        |> Array.map (fun row -> 
-            row
-            |> Array.map (function 
-                            | Marked x -> true
-                            | Unmarked x -> false) //transform marked or unmarked spots to true or false
-            |> Array.reduce (&&) //true if every spot in row marked
-        )
-        |> Array.reduce (||) //true if at least one row or column is complete
+        |> Array.exists 
+            (Array.forall 
+                (function 
+                    | Marked _ -> true
+                    | _ -> false
+                )
+            )
+
     let score (lastCalled: int) (winningBoard: Board) : int =
         winningBoard
         |> Array.concat

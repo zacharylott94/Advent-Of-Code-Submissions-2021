@@ -45,12 +45,8 @@ type SharedTests () =
         let parsedFirst = (snd parsed).[0]
         let parsedSecond = (snd parsed).[1]
         //check to see if the boards were parsed correctly
-        Assert.IsTrue(Board.Equals parsedFirst firstBoard)
-        Assert.IsTrue(Board.Equals parsedSecond secondBoard)
-
-        //check number of rows to see if there are only 5 rows
-        Assert.AreEqual(parsedFirst.Length, 5)
-        Assert.AreEqual(parsedSecond.Length, 5)
+        Assert.IsTrue((parsedFirst = firstBoard))
+        Assert.IsTrue((parsedSecond = secondBoard))
 
     [<TestMethod>]
     member this.markBoard () =
@@ -79,7 +75,7 @@ type SharedTests () =
             |> Board.mark 67
             |> Board.mark 36
             |> Board.mark 1 //this number doesn't exist on the board and should not change the board
-            |> Board.Equals expectedBoard
+            |> (=) expectedBoard
         Assert.IsTrue(test)
     
     [<TestMethod>]
@@ -135,25 +131,25 @@ type Task1Tests () =
     [<TestMethod>]
     member this.task1 () =
         let inputs: (int[] * Board[]) = ([|52; 60; 3; 55; 71; 6; 4; 56; 11; 13; 14|],
-                                        [|
-                                            [|
-                                                [|3; 55; 15; 54; 81|]
-                                                [|56; 77; 20; 99; 25|]
-                                                [|90; 57; 67; 0; 97|]
-                                                [|28; 45; 69; 84; 14|]
-                                                [|91; 94; 39; 36; 85|]
-                                            |] 
-                                            |> Array.map (fun row -> Array.map (fun num -> Unmarked num) row)
-                                        
-                                            [|
-                                                [|52; 60; 30; 7; 36|]
-                                                [|71; 97; 77; 19; 46|]
-                                                [|6; 3; 75; 82; 24|]
-                                                [|4; 57; 2; 11; 91|]
-                                                [|56; 84; 23; 43; 48|]
-                                            |] 
-                                            |> Array.map (fun row -> Array.map (fun num -> Unmarked num) row)
-                                        |])
+            [|
+                [|
+                    [|3; 55; 15; 54; 81|]
+                    [|56; 77; 20; 99; 25|]
+                    [|90; 57; 67; 0; 97|]
+                    [|28; 45; 69; 84; 14|]
+                    [|91; 94; 39; 36; 85|]
+                |] 
+                |> Array.map (fun row -> Array.map (fun num -> Unmarked num) row)
+            
+                [|
+                    [|52; 60; 30; 7; 36|]
+                    [|71; 97; 77; 19; 46|]
+                    [|6; 3; 75; 82; 24|]
+                    [|4; 57; 2; 11; 91|]
+                    [|56; 84; 23; 43; 48|]
+                |] 
+                |> Array.map (fun row -> Array.map (fun num -> Unmarked num) row)
+            |])
         
         let expectedOutput = 56 * 852
 
